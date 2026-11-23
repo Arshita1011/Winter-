@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Winter Wonderland ❄</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, serif;
+  background: linear-gradient(160deg, #071b35, #17476b, #9bc8df);
+  color: white;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.page {
+  min-height: 100vh;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 25px;
+  animation: appear 1s ease;
+}
+
+.page.active {
+  display: flex;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 9vw, 4.5rem);
+  letter-spacing: 3px;
+  line-height: 1.3;
+  text-shadow: 0 0 25px #bdeaff;
+}
+
+p {
+  font-size: 1.15rem;
+  margin-top: 20px;
+  letter-spacing: 2px;
+}
+
+button {
+  margin-top: 35px;
+  padding: 15px 30px;
+  border: 1px solid white;
+  border-radius: 40px;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: 0.3s;
+}
+
+button:hover {
+  background: white;
+  color: #123653;
+  transform: scale(1.08);
+}
+
+.snowflake {
+  position: fixed;
+  top: -20px;
+  color: white;
+  pointer-events: none;
+  z-index: 10;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.2;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.decor {
+  font-size: 3rem;
+  margin-bottom: 25px;
+}
+</style>
+</head>
+
+<body>
+
+<section class="page active" id="page1">
+  <div class="decor">✨ ❄ ✨</div>
+  <h1>YEAH!!!</h1>
+  <p>IT'S OFFICIALLY THAT TIME OF THE YEAR</p>
+  <button onclick="nextPage(2)">LET'S GO ❄</button>
+</section>
+
+<section class="page" id="page2">
+  <div class="decor">☃️</div>
+  <h1>It's finally<br>WINTER ❄</h1>
+  <p>The cold days, cozy nights & magical vibes are here.</p>
+  <button onclick="openWinter()">TAP TO OPEN IT ✨</button>
+</section>
+
+<section class="page" id="page3">
+  <div class="decor">❄️ ☃️ ❄️</div>
+  <h1>ENJOY YOUR<br>WINTER</h1>
+  <p>Stay cozy. Stay warm. Make beautiful memories. 🤍</p>
+  <button onclick="restart()">REPLAY ↻</button>
+</section>
+
+<script>
+function nextPage(number) {
+  document.querySelectorAll(".page").forEach(p =>
+    p.classList.remove("active")
+  );
+  document.getElementById("page" + number)
+    .classList.add("active");
+}
+
+let snowInterval;
+
+function createSnow() {
+  const snow = document.createElement("div");
+  snow.className = "snowflake";
+  snow.innerHTML = ["❄", "❅", "❆", "✧"][
+    Math.floor(Math.random() * 4)
+  ];
+
+  snow.style.left = Math.random() * 100 + "vw";
+  snow.style.fontSize = (12 + Math.random() * 22) + "px";
+  snow.style.opacity = Math.random() * 0.7 + 0.3;
+  snow.style.animationDuration = (3 + Math.random() * 5) + "s";
+
+  document.body.appendChild(snow);
+
+  setTimeout(() => snow.remove(), 8500);
+}
+
+function openWinter() {
+  nextPage(3);
+
+  for (let i = 0; i < 100; i++) {
+    setTimeout(createSnow, i * 35);
+  }
+
+  snowInterval = setInterval(createSnow, 100);
+}
+
+function restart() {
+  clearInterval(snowInterval);
+  document.querySelectorAll(".snowflake").forEach(s => s.remove());
+  nextPage(1);
+}
+</script>
+
+</body>
+</html>
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Winter Wonderland ❄</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, serif;
+  background: linear-gradient(160deg, #071b35, #17476b, #9bc8df);
+  color: white;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.page {
+  min-height: 100vh;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 25px;
+  animation: appear 1s ease;
+}
+
+.page.active {
+  display: flex;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 9vw, 4.5rem);
+  letter-spacing: 3px;
+  line-height: 1.3;
+  text-shadow: 0 0 25px #bdeaff;
+}
+
+p {
+  font-size: 1.15rem;
+  margin-top: 20px;
+  letter-spacing: 2px;
+}
+
+button {
+  margin-top: 35px;
+  padding: 15px 30px;
+  border: 1px solid white;
+  border-radius: 40px;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: 0.3s;
+}
+
+button:hover {
+  background: white;
+  color: #123653;
+  transform: scale(1.08);
+}
+
+.snowflake {
+  position: fixed;
+  top: -20px;
+  color: white;
+  pointer-events: none;
+  z-index: 10;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.2;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.decor {
+  font-size: 3rem;
+  margin-bottom: 25px;
+}
+</style>
+</head>
+
+<body>
+
+<section class="page active" id="page1">
+  <div class="decor">✨ ❄ ✨</div>
+  <h1>YEAH!!!</h1>
+  <p>IT'S OFFICIALLY THAT TIME OF THE YEAR</p>
+  <button onclick="nextPage(2)">LET'S GO ❄</button>
+</section>
+
+<section class="page" id="page2">
+  <div class="decor">☃️</div>
+  <h1>It's finally<br>WINTER ❄</h1>
+  <p>The cold days, cozy nights & magical vibes are here.</p>
+  <button onclick="openWinter()">TAP TO OPEN IT ✨</button>
+</section>
+
+<section class="page" id="page3">
+  <div class="decor">❄️ ☃️ ❄️</div>
+  <h1>ENJOY YOUR<br>WINTER</h1>
+  <p>Stay cozy. Stay warm. Make beautiful memories. 🤍</p>
+  <button onclick="restart()">REPLAY ↻</button>
+</section>
+
+<script>
+function nextPage(number) {
+  document.querySelectorAll(".page").forEach(p =>
+    p.classList.remove("active")
+  );
+  document.getElementById("page" + number)
+    .classList.add("active");
+}
+
+let snowInterval;
+
+function createSnow() {
+  const snow = document.createElement("div");
+  snow.className = "snowflake";
+  snow.innerHTML = ["❄", "❅", "❆", "✧"][
+    Math.floor(Math.random() * 4)
+  ];
+
+  snow.style.left = Math.random() * 100 + "vw";
+  snow.style.fontSize = (12 + Math.random() * 22) + "px";
+  snow.style.opacity = Math.random() * 0.7 + 0.3;
+  snow.style.animationDuration = (3 + Math.random() * 5) + "s";
+
+  document.body.appendChild(snow);
+
+  setTimeout(() => snow.remove(), 8500);
+}
+
+function openWinter() {
+  nextPage(3);
+
+  for (let i = 0; i < 100; i++) {
+    setTimeout(createSnow, i * 35);
+  }
+
+  snowInterval = setInterval(createSnow, 100);
+}
+
+function restart() {
+  clearInterval(snowInterval);
+  document.querySelectorAll(".snowflake").forEach(s => s.remove());
+  nextPage(1);
+}
+</script>
+
+</body>
+</html>
